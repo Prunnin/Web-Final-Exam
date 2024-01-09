@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var loginButton = document.querySelector(".button-container");
     if (loginButton) {
         loginButton.addEventListener("click", function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             validateForm();
         });
     }
@@ -32,5 +32,22 @@ function validateForm() {
         passwordError.innerHTML = "Hãy nhập password tối thiểu 6 kí tự";
         return false;
     }
-    window.location.href = "home.html";
+
+    // AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "login.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                // Redirect to home page
+                window.location.href = "home.html";
+            } else {
+                // Display error message
+                passwordError.innerHTML = response.message;
+            }
+        }
+    };
+    xhr.send("login_id=" + account + "&password=" + password);
 }
