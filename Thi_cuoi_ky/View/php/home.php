@@ -1,3 +1,17 @@
+
+<?php
+// Start or resume the session
+session_start();
+
+// Check if the user is logged in, if not, redirect to login.php
+if (!isset($_SESSION['login_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Get the user's login_id from the session
+$login_id = $_SESSION['login_id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +21,7 @@
     <title>Home</title>
 </head>
 <body>
-<p>Tên login: </p>
+<p>Tên login: <?php echo $login_id; ?> </p>
 <p>Thời gian login: <span id="loginTime"></span></p>
 <table>
     <tr>
