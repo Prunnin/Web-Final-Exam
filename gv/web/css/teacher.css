@@ -1,0 +1,73 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+#filePathDisplay {
+    /* float: left; */
+    padding-top: 10px;
+    padding-left: 10px;
+    height: 0.8cm;
+    width: 8cm;
+    border: 1px solid rgb(29, 21, 21);
+    background-color: #d8d9db;
+}
+
+input {
+    height: 1cm;
+    width: 8.13cm;
+    border: 1px solid rgb(29, 21, 21);
+    background-color: #d8d9db;
+}
+
+select {
+    background-color: #d8d9db;
+    height: 1.15cm;
+    width: 8.3cm;
+}
+
+fieldset {
+    display: flex;
+    border: 0;
+}
+
+label {
+    margin-left: 25%;
+    margin-right: 2cm;
+
+}
+
+textarea {
+    border: 1px solid rgb(29, 21, 21);
+    background-color: #d8d9db;
+}
+
+#input_avatar {
+    /* display: none; */
+    /* overflow: hidden; */
+    color: transparent;
+    content: "hello";
+}
+
+img {
+    width: 300px;
+    /* Đặt chiều rộng */
+    height: 200px;
+    /* Đặt chiều cao */
+
+}
+
+.alert_validate {
+    margin-left: 15.1cm;
+    color: red;
+    display: none;
+}
+
+button{
+    font-size: large;
+    border: 2px solid rgb(29, 21, 21);
+    border-radius: 10px;
+    padding: 20px 40px 20px 40px;
+    background-color: #719bf0;
+}
