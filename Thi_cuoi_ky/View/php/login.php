@@ -1,4 +1,5 @@
 <?php
+// Include the database connection code
 include('connectdb.php');
 
 // Check if the form is submitted
@@ -7,10 +8,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login_id = isset($_POST['login_id']) ? $_POST['login_id'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    // Check if both login_id and password are provided
-    if (empty($login_id) || empty($password)) {
-        echo "Please provide both login ID and password.";
+    // Check if username is empty
+    if (empty($login_id)) {
+        echo " Hãy nhập login id.";
         exit();
+    }
+
+    // Check if username has at least 4 characters
+    if (strlen($login_id) < 4) {
+        echo " Hãy nhập login id tối thiểu 4 ký tự.";
+    }
+
+    // Check if password is empty
+    if (empty($password)) {
+        echo " Hãy nhập mật khẩu.";
+    }
+
+    // Check if password has at least 6 characters
+    if (strlen($password) < 6) {
+        echo " Hãy nhập mật khẩu tối thiểu 6 ký tự."; 
     }
 
     // Prevent SQL injection
@@ -29,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         // User does not exist or incorrect credentials
-        echo "login id và password không đúng";
+        echo " login id và password không đúng.";
     }
+
+    // Close the database connection when done
+    $conn->close();
 }
-
-$conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +59,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -68,5 +84,4 @@ $conn->close();
     </div>
 
     </body>
-    <script src="/javascript/login.js"></script>
 </html>
