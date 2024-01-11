@@ -95,11 +95,11 @@
         <fieldset style="display: flex;">
             <label id="avatar_label" for="avatar">Avatar</label>
             <div style="margin-left: 0.9cm;">
-                <img style="  width: 300px; height: 200px; " id="img_teacher" src=<?php if ($file_name) {
+                <img style="  width: 300px; height: 200px; " id="img_teacher" src="<?php if ($file_name) {
                                                                                         echo $avatar_path;
                                                                                     } else {
                                                                                         echo "../../web/avatar/" . $_POST["id"] . "/" . $_POST["old_avatar"];
-                                                                                    } ?> alt='Avatar'>
+                                                                                    } ?>" alt='Avatar'>
             </div>
         </fieldset>
 
@@ -113,15 +113,22 @@
                 background-color: #d8d9db;"> <?php echo $description; ?> </div>
         </fieldset>
 
-        <form id="form_change" action="../view/teacher_adjust.php" method="post" style="display: none;">
-            <input type="text" name="id" value="<?php echo $_POST["id"]; ?>">
-            <input type="text" name="name" value="<?php echo $name; ?>">
-            <input type="text" name="department" value="<?php echo $department ;?>">
-            <input type="text" name="degree" value="<?php echo $degree ;?>">
-            <input type="text" name="avatar" value="<?php echo $file_name; ?>">
-            <input type="text" name="description" value="<?php echo $description; ?>">
+        <?php
+        if (isset($_POST["id"])) {
 
-        </form>
+        ?>
+            <form id="form_change" action="../view/teacher_adjust.php" method="post" style="display: none;">
+                <input type="text" name="id" value="<?php echo $_POST["id"]; ?>">
+                <input type="text" name="name" value="<?php echo $name; ?>">
+                <input type="text" name="department" value="<?php echo $department; ?>">
+                <input type="text" name="degree" value="<?php echo $degree; ?>">
+                <input type="text" name="avatar" value="<?php echo $file_name; ?>">
+                <input type="text" name="description" value="<?php echo $description; ?>">
+
+            </form>
+        <?php
+        }
+        ?>
         <fieldset style="text-align: center;display:block;">
             <?php
             if (isset($_POST["id"])) {
