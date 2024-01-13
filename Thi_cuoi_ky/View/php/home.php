@@ -33,14 +33,14 @@ $login_id = $_SESSION['login_id'];
     <tr>
         <td>Tìm kiếm</td>
         <td><a href="teacher_searching.html">Tìm kiếm</a></td>
-        <td><a href="searching_subject.html">Tìm kiếm</a></td>
+        <td><a href="list_subject.php">Tìm kiếm</a></td>
         <td><a href="schedule_seaching.html">Tìm kiếm</a></td>
     </tr>
     <tr>
         <td>Thêm mới</td>
         <td>Thêm mới</td>
-        <td><a href="adding_subject.html"></a>Thêm mới</td>
-        <td>Thêm mới</td>
+        <td><a href="adding_subject.php">Thêm mới</a></td>
+        <td><a href="schedule_register.php">Thêm mới</a></td>
     </tr>
 </table>
 
