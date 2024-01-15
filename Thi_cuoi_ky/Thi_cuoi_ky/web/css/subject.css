@@ -1,0 +1,55 @@
+.container {
+    text-align: center;
+    align-items: center;
+    
+}
+.option {
+    width: 370px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid blue;
+    background-color: lightblue;
+    margin-bottom: 30px;
+    margin-left: 120px;
+}
+/* .optionLession {
+    margin-left: 500px;
+    margin-bottom: 30px;
+} */
+.button-container {
+    background-color: #5067e6;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 180px;
+    height: 45px;
+    margin-top: 30px;
+    margin-left: 170px;
+    display: inline-block;
+    cursor: pointer;
+}   
+
+/* .lession {
+    margin-right: 500px;
+   
+} */
+.notes {
+    margin-top: 50px;
+}
+.re-modify, .register {
+    background-color: #5067e6;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 180px;
+    height: 45px;
+    margin-top: 30px; 
+    display: inline-block;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px
+}
+.schedule-info {
+    
+    margin-bottom: 30px;
+}

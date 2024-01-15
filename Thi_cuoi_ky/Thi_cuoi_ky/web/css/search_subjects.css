@@ -1,0 +1,49 @@
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}  
+
+.school-year {
+    margin-right: 10px;
+    
+}
+
+body {
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20201208/pngtree-checkered-blue-simple-background-image_505269.jpg');
+}
+
+.button{
+    color: aliceblue;
+    
+    background-color: rgb(85, 102, 214);
+    border-radius: 5px;
+    width: 90px;
+    height: 26px;
+    margin-left: 90px;
+}
+
+.edit-button {
+    background-color: #5e8feb; /* Nền xanh */
+    color: #ffffff; /* Chữ trắngg */
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    border:2px solid #1e52b3;
+}
+
+.delete-button {
+    background-color: #5e8feb; 
+    color: #ffffff; /* Chữ trắng */
+    padding: 5px 10px;
+    text-decoration: none;
+    border:2px solid #1e52b3;
+}
+
+.add{
+    background-color:rgb(85, 102, 214) ;
+    color: aliceblue;
+    border-radius: 5px ;
+    margin-left: 320px;
+    text-decoration: none;
+}

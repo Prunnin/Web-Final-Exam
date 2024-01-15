@@ -1,0 +1,81 @@
+/* Begin login */
+.username {
+    margin-right: 80px;
+    display: inline-block;
+}
+.password {
+    margin-right: 95px;
+}
+
+.entering {
+    padding-top: 2px;
+    border: 1px solid blue;
+    color: black;
+    width: 350px;
+    padding: 5px; 
+    border-radius: 0px;
+    display: inline-block;
+    margin: 5px;
+    padding-bottom: 11px;
+    padding-top: 9px;
+    
+}
+.button-container {
+    background-color: #5067e6;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 180px;
+    height: 45px;
+    margin-top: 30px;
+    margin-left: 170px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    min-height: 350px; 
+    min-width: 600px;
+    background-color: white; 
+    border: 1px solid gray;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.forgot-password {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.forgot-password a {
+    text-decoration: underline;
+    color: black;
+    cursor: pointer;
+}
+/* End login */
+
+/* Begin home */
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+tr:nth-child(2) td,
+tr:nth-child(3) td {
+    padding-left: 60px;
+    color: blue; 
+    text-decoration: underline;
+    cursor: pointer;
+} */
+/* End home */
