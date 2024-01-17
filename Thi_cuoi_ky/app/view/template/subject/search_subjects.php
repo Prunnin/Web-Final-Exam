@@ -31,12 +31,10 @@
     }
     
 </style>
-
+<a href="home"><button><<</button><a>
 <!-- Search form -->
 <form method="get">
-    <label for="name" class="username">Từ khóa</label>
-    <input type="text" name="name" id="name" class="entering">
-
+   
     <br>
     <label for="school_year" class="username">Khóa học </label>
     <select name="school_year" id="school_year" class="entering">
@@ -45,8 +43,11 @@
         <option value="Năm 2">Năm 2</option>
         <option value="Năm 3">Năm 3</option>
         <option value="Năm 4">Năm 4</option>
-    </select>
-    <br>
+    </select><br>
+
+    <label for="name" class="username">Từ khóa</label>
+    <input type="text" name="name" id="name" class="entering">    <br>
+
 
     <input class="button-container" type="submit" value="Tìm kiếm">
 </form>
@@ -58,15 +59,14 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
     echo '<tr>';
     echo '<th>No</th>';
     echo '<th>Tên môn học </th>';
-    // echo '<th>Avatar</th>';
     echo '<th>Mô tả chi tiết</th>';
     echo '<th>Khóa</th>';
     echo '<th>Action</th>';
     echo '</tr>';
-
+    $count = 1;
     foreach ($data["subjects"] as $key => $value) {
         echo '<tr>';
-        echo '<td>' . $value->id . '</td>';
+        echo '<td>' .  $count . '</td>';
         echo '<td>' . $value->name . '</td>';
         echo '<td>' . $value->description . '</td>';
         echo '<td>' . $value->school_year . '</td>';
@@ -78,7 +78,7 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
         echo '<input type="submit" class="modify" value="Sửa">';
         echo '</form>';
 
-        echo '<form method="post" action="subject/delete">';
+        echo '<form method="post" action="subject/delete" id="form_' . $value->id . '" onsubmit="return confirmDelete(' . $value->id . ');">';
         echo '<input type="hidden" name="subject_id" value="' . $value->id . '">';
         echo '<button type="submit" name="delete" class="delete" value="Xóa">Xóa</button>';
         echo '</form>';
@@ -86,6 +86,7 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
         echo '</td>';
 
         echo '</tr>';
+        $count++;
     }
 
     echo '</table>';
@@ -93,3 +94,10 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
     echo '<p>No subjects found.</p>';
 }
 ?>
+<script src="web/javascript/jquery-3.6.0.min.js"></script>
+<script>
+    function confirmDelete(subjectId) {
+        var confirmResult = confirm("Bạn có chắc muốn xóa môn học này?");
+        return confirmResult;
+    }
+</script>

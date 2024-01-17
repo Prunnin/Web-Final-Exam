@@ -23,39 +23,50 @@
         box-sizing: border-box;
     }
 
-    .btn-container {
-        display: block;
-        width: 100%;
-        background-color: #99bbf4;
+    .my-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #99bbf4;
+    color: #fff;  /* Màu chữ */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    }
+
+    .my-btn:hover {
+        background-color: #4c87ae;
     }
 </style>
 <?php
 // var_dump($data);
 ?>
-<div id="notification"><?php if (!empty($notification)) echo $notification; ?></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/css/multi-select-tag.css">
+
 <div class="container_s container">
-    <div><?php echo isset($data['avatar']) ? '<img src = "web/avatar/tmp/'.$data['avatar'].'" style="max-height: 100px;"' : ''; ?></div>
+    <div><?php echo isset($data['avatar']) && !empty($data['avatar']) ? '<img src = "web/avatar/tmp/'.$data['avatar'].'" style="max-height: 100px;"' : ''; ?></div>
     <form action="subject/showinfor" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-        <div class="input-group">
+    <div id="notification" style="color: red; width: 100%;"><?php if (!empty($data['notification']) && isset($data['notification'])) echo $data['notification']; ?></div>    
+    <div class="input-group">
             <label for="name">Tên môn học</label>
-            <input type="text" name="name" class="entering" value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>" required>
+            <input type="text" name="name" class="entering" value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>">
         </div>
 
         <div class="input-group">
             <label for="school_year">Khóa</label>
-            <select name="school_year" class="selectOption entering">
-                <option value="">Chọn khóa học:</option>
-                <option value="năm 1" <?php echo isset($data['school_year']) && $data['school_year'] == "năm 1" ? 'selected' : ''; ?>>Năm 1</option>
-                <option value="năm 2" <?php echo isset($data['school_year']) && $data['school_year'] == "năm 2" ? 'selected' : ''; ?>>Năm 2</option>
-                <option value="năm 3" <?php echo isset($data['school_year']) && $data['school_year'] == "năm 3" ? 'selected' : ''; ?>>Năm 3</option>
-                <option value="năm 4" <?php echo isset($data['school_year']) && $data['school_year'] == "năm 4" ? 'selected' : ''; ?>>Năm 4</option>
+            <select name="school_year[]" id="multiple_select" multiple>
+                <option value="Năm 1" <?php echo isset($data['school_year']) && in_array('Năm 1', explode(",", $data['school_year'])) ? 'selected' : ''; ?>>Năm 1</option>
+                <option value="Năm 2" <?php echo isset($data['school_year']) && in_array('Năm 2', explode(",", $data['school_year'])) ? 'selected' : ''; ?>>Năm 2</option>
+                <option value="Năm 3" <?php echo isset($data['school_year']) && in_array('Năm 3', explode(",", $data['school_year'])) ? 'selected' : ''; ?>>Năm 3</option>
+                <option value="Năm 4" <?php echo isset($data['school_year']) && in_array('Năm 4', explode(",", $data['school_year'])) ? 'selected' : ''; ?>>Năm 4</option>
             </select>
         </div>
 
 
         <div class="input-group">
             <label for="description">Mô tả chi tiết</label>
-            <textarea name="description" rows="4" class="entering" required><?php echo isset($data['description']) ? $data['description'] : ''; ?></textarea>
+            <textarea name="description" rows="4" class="entering"><?php echo isset($data['description']) ? $data['description'] : ''; ?></textarea>
         </div>
             
         <div class="input-group">
@@ -65,6 +76,9 @@
         </div>
         
         <input type="hidden" name="hidden_img" value="<?php echo isset($data['avatar']) ? $data['avatar'] : ''; ?>">
-        <input type="submit" class="btn-container" value="Xác nhận">
+        <input type="submit" class="my-btn" value="Xác nhận">
     </form>
-</div>
+</div><script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@2.0.1/dist/js/multi-select-tag.js"></script>
+<script>
+    new MultiSelectTag('multiple_select')  // id
+</script>

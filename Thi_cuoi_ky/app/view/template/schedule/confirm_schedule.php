@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="web/css/subject.css">
 <?php
+// var_dump($data);
 $schoolYear = $data['data']['school_year'];
 $subjectId = $data['data']['subject_id'];
 $teacherId = $data['data']['teacher_id'];
 $weekDay = $data['data']['week_day'];
-$lessions = $data['data']['lesson'];
+$lessions = $data['data']['lession'];
 $notes = $data['data']['notes'];
 ?>
 <div class="container">
@@ -47,11 +48,11 @@ $notes = $data['data']['notes'];
                 <input type="hidden" name="week_day" value="<?php echo $weekDay; ?>">
                 <?php
                 foreach ($lessions as $lesson) {
-                    echo '<input type="hidden" name="lesson[]" value="' . $lesson . '">';
+                    echo '<input type="hidden" name="lession[]" value="' . $lesson . '">';
                 }
                 ?>
                 <input type="hidden" name="notes" value="<?php echo $notes; ?>">
-                <input class="register" type="submit" value="Đăng ký">
+                <input class="register" type="submit" value="Sửa">
                 
             </form>
             
@@ -63,12 +64,12 @@ $notes = $data['data']['notes'];
                 <input type="hidden" name="week_day" value="<?php echo $weekDay; ?>">
                 <?php
                 foreach ($lessions as $lesson) {
-                    echo '<input type="hidden" name="lesson[]" value="' . $lesson . '">';
+                    echo '<input type="hidden" name="lession[]" value="' . $lesson . '">';
                 }
                 ?>
                 <input type="hidden" name="notes" value="<?php echo $notes; ?>">
                 <input type="hidden" name="update_id" value="<?php echo $data['data']['update_id']; ?>">
-                <input class="re-modify" type="submit" value="Sửa lại">
+                <input class="re-modify" type="submit" value="Sửa lại" name="re_modify">
             </form>
         </div>
     </div>

@@ -67,7 +67,6 @@ $notes = $data['data']['notes'];
                 }
                 ?>
                 <input type="hidden" name="notes" value="<?php echo $notes; ?>">
-                
                 <input class="re-modify" type="submit" value="Sửa lại">
             </form>
         </div>

@@ -57,12 +57,45 @@ class subject_controller extends controller{
         ]);
     }
     public function showinfor() {
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $name = isset($_POST["name"]) ? $_POST["name"] : '';
             $description = isset($_POST["description"]) ? $_POST["description"] : '';
-            $school_year = isset($_POST["school_year"]) ? $_POST["school_year"] : '';
+            $school_year = isset($_POST["school_year"]) && !empty($_POST["school_year"]) ? $_POST["school_year"] : array();
+            
+            $notification = "";
+            $flag = true;
+            if (empty($name)){
+                $notification = "Hãy nhập tên môn học";
+                $flag = false;
+            } elseif (strlen($name) > 100){
+                $flag = false;
+                $notification = "Tên môn học không nhập quá 100 ký tự";
+            } elseif (empty($school_year)){
+                $flag = false;
+                $notification = "Hãy nhập khoá học";
+            } elseif (empty($description)){
+                $flag = false;
+                $notification = "Hãy nhập mô tả chi tiết";
+            } elseif (strlen($description) > 1000) {
+                $flag = false;
+                $notification = "Mô tả chi tiết không nhập quá 1000 ký tự";
+            } elseif (empty($_POST['hidden_img']) && empty($_FILES['avatar']['name'])) {
+                $flag = false;
+                $notification = "Hãy chọn avatar";
+            }
 
+            if (!$flag){
+                return $this->view("subject/adding_subject", [
+                    "name" => $name,
+                    "school_year" => implode(',', $school_year),
+                    'description' => $description,
+                    'avatar' => !empty($_POST['hidden_img']) ? $_POST['hidden_img'] : '',
+                    'notification' => $notification
+                ]);
+            }
+            
             if (!empty($_FILES['avatar']['name'])) {
                 $avatar_name = basename($_FILES["avatar"]["name"]);
 
@@ -102,7 +135,7 @@ class subject_controller extends controller{
                     }
 
                     if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
-                        $this->view("subject/confirm_adding_subject", [
+                        return $this->view("subject/confirm_adding_subject", [
                             "name" => $name,
                             "school_year" => $school_year,
                             "description" => $description,
@@ -115,7 +148,7 @@ class subject_controller extends controller{
                 }
             } else {
                 if (!empty($_POST['hidden_img'])) {
-                    $this->view("subject/confirm_adding_subject", [
+                    return $this->view("subject/confirm_adding_subject", [
                         "name" => $name,
                         "school_year" => $school_year,
                         "description" => $description,
@@ -165,8 +198,9 @@ class subject_controller extends controller{
         // Process the form submission and retrieve data
         $name_filter = isset($_GET['name']) ? $_GET['name'] : '';
         $school_year_filter = isset($_GET['school_year']) ? $_GET['school_year'] : '';
-    
-        // Instantiate the Subject model
+        // var_dump($school_year_filter);
+        // die();
+
         $subject_model = $this->model("subject");
     
         // Retrieve subjects using the model
@@ -277,13 +311,15 @@ class subject_controller extends controller{
     }
 
     public function insert_subject(){
+        
         $my_model = $this->model("subject");
 
         $name = $_POST['name'];
         $avatar = $_POST['avatar'];
         $description = $_POST['description'];
         $school_year = $_POST['school_year'];
-
+        // var_dump($_POST['school_year']);
+        // die();
         $rs = $my_model->insert_subject($name, $avatar, $description, $school_year);
         if ($rs){
             header("location: complete");

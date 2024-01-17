@@ -127,7 +127,7 @@
             if (isset($_POST["id"])) {
                 echo "<button onclick=\"$('#form_change').submit();\">Sửa lại</button>";
             } else {
-                echo "<button onclick=\"window.location.href='teacher/index?name=$name&department=$department&degree=$degree&description=$description&avatar=$file_name'\">Sửa lại</button>";
+                echo "<button onclick=\"window.location.href='teacher/teacher_register?name=$name&department=$department&degree=$degree&description=$description&avatar=$file_name'\">Sửa lại</button>";
             }
             ?>
             <button type="button" id="confirm_button">Đăng ký</button>

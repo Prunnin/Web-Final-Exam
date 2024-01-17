@@ -17,7 +17,8 @@ class subject extends database {
         // Ensure your SQL query is correct
         $sql = "SELECT id, school_year, description, name 
                 FROM subjects
-                WHERE (school_year LIKE CONCAT('%', ?, '%') AND name LIKE CONCAT('%', ?, '%') OR description LIKE CONCAT('%', ?, '%'))";
+                WHERE (school_year LIKE CONCAT('%', ?, '%') AND (name LIKE CONCAT('%', ?, '%') OR description LIKE CONCAT('%', ?, '%')))";
+
         
         $this->setQuery($sql);
     

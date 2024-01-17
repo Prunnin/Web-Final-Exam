@@ -7,7 +7,9 @@ $departments = array(
     "003" => "Hải dương học");
 
 ?>
+
 <div class="container">
+
         <!-- Search form -->
         <div class="col-12">
             <div class="search-form">

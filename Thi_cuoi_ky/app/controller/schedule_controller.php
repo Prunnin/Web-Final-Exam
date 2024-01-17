@@ -27,14 +27,27 @@ class schedule_controller extends controller{
         ]);
     }
     public function update_schedule(){
+        // var_dump($_POST);
+        // die();
         $id = $_POST['update_id'];
         $my_model = $this->model("schedule");
         $arr_data = $my_model->read_schedule_by_id($id);
+        $arr_data->lession = explode(",", $arr_data->lession);
+        if (isset($_POST['re_modify'])){
+
+            $post_data = $_POST;
+            $arr_data = new stdClass();
+        
+            foreach ($post_data as $key => $value) {
+                $arr_data->$key = $value;
+            }
+        }
+
         $teachers = $my_model->read_table_by_name('teachers');
         $subjects = $my_model->read_table_by_name('subjects');
         // var_dump($my_model->read_table_by_name('teachers'));
         $view = "schedule/update_schedule";
-        $this->view($view, [
+        return $this->view($view, [
             "data" => $arr_data,
             'subjects' => $subjects,
             'teachers' => $teachers,
@@ -47,7 +60,7 @@ class schedule_controller extends controller{
     }
     public function confirm_update_schedule(){
         $data = $_POST;
-       
+
         $view = "schedule/confirm_schedule";
         $my_model = $this->model("schedule");
         $teachers = $my_model->read_table_by_id_name($_POST['teacher_id'], 'teachers');
@@ -63,7 +76,7 @@ class schedule_controller extends controller{
         $subject_id = $_POST['subject_id'];
         $teacher_id = $_POST['teacher_id'];
         $week_day = $_POST['week_day'];
-        $lesson = implode(',',$_POST['lesson']);
+        $lesson = implode(',',$_POST['lession']);
         $notes = $_POST['notes'];
         $my_model = $this->model("schedule");
 

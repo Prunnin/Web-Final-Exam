@@ -1,5 +1,7 @@
 <?php
 // var_dump($data);
+// echo implode(",", $data["school_year"]);
+// die();
 ?>
 <style>
         table {
@@ -21,9 +23,13 @@
         .btn_button{
             padding: 10px 50px;
             margin: 5px;
-            background-color: #408abb;
-            color: #edebe7;
             cursor: pointer;
+            background-color: #99bbf4;
+            color: #fff; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
         .btn_button:hover{
             background-color: #4c87ae;
@@ -39,7 +45,7 @@
             </tr>
             <tr>
                 <td>Khóa</td>
-                <td><?php echo $data["school_year"]; ?></td>
+                <td><?php echo implode(",", $data["school_year"]); ?></td>
             </tr>
             <tr>
                 <td>Mô tả chi tiết</td>
@@ -56,7 +62,7 @@
             <input type="hidden" name="name" value="<?php echo $data["name"]; ?>">
             <input type="hidden" name="avatar" value="<?php echo $data["avatar"]; ?>">
             <input type="hidden" name="description" value="<?php echo $data["description"]; ?>">
-            <input type="hidden" name="school_year" value="<?php echo $data["school_year"]; ?>">
+            <input type="hidden" name="school_year" value="<?php echo  implode(",", $data["school_year"]); ?>">
             
         </form>
         <div style="display: flex;">
