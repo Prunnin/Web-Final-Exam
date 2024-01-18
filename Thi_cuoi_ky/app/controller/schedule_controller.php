@@ -5,8 +5,15 @@ class schedule_controller extends controller{
         // $model = $this->model("demo"); 
         $my_model = $this->model("schedule");
         $arr = $my_model->search_shedule('', '', '');
+        $teachers =  $my_model->read_table_by_name('teachers');
+        $subjects = $my_model->read_table_by_name('subjects');
         $this->view("schedule/schedule",[
-            'arr' =>  $arr
+            'arr' =>  $arr,
+            'teachers' => $teachers,
+            'subjects' => $subjects,
+            'search_school_year' => '',
+            'search_subject' => '',
+            'search_teacher' => '',
         ]);
     }
     public function search(){
@@ -17,12 +24,17 @@ class schedule_controller extends controller{
 
         $my_model = $this->model("schedule");
         $arr = $my_model->search_shedule($searchSchoolYear, $searchSubject, $searchTeacher);
+        $teachers =  $my_model->read_table_by_name('teachers');
+        $subjects = $my_model->read_table_by_name('subjects');
         // var_dump($arr);
         // die();
         $this->view("schedule/schedule",[
             'search_school_year' => $searchSchoolYear,
             'search_subject' => $searchSubject,
             'search_teacher' => $searchTeacher,
+
+            'teachers' => $teachers,
+            'subjects' => $subjects,
             'arr' =>  $arr
         ]);
     }
@@ -111,7 +123,7 @@ class schedule_controller extends controller{
         // var_dump($_POST);
         $teachers = $my_model->read_all_table_by_id_name('', 'teachers');
         $subjects = $my_model->read_all_table_by_id_name('','subjects');
-        $this->view($view, [
+        return $this->view($view, [
             'data' => $_POST,
             'subjects' => $subjects,
             'teachers' => $teachers,
@@ -123,7 +135,7 @@ class schedule_controller extends controller{
         $teachers = $my_model->read_table_by_id_name($_POST['teacher_id'], 'teachers');
         $subjects = $my_model->read_table_by_id_name($_POST['subject_id'],'subjects');
         $view = "schedule/confirm_add_schedule";
-        $this->view($view, [
+        return $this->view($view, [
             'data' => $data,
             'subjects' => $subjects,
             'teachers' => $teachers

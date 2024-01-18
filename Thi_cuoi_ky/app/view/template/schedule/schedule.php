@@ -15,15 +15,42 @@
         <form action="schedule/search" method="post">
             <div style="padding: 5px;">
                 <label for="search_school_year">Khóa </label>
-                <input type="text" name="search_school_year" value="<?php echo (isset($data['search_school_year'])) ? $data['search_school_year'] : ''; ?>" >
+                <select name="search_school_year">
+                    <option value=""></option>
+                    <option value="Năm 1"<?php echo (ucfirst($data['search_school_year']) == "Năm 1" && !empty($data['search_school_year'])) ? "selected" : ''; ?>>Năm 1</option>
+                    <option value="Năm 2"<?php echo (ucfirst($data['search_school_year']) == "Năm 2" && !empty($data['search_school_year'])) ? "selected" : ''; ?>>Năm 2</option>
+                    <option value="Năm 3"<?php echo (ucfirst($data['search_school_year']) == "Năm 3" && !empty($data['search_school_year'])) ? "selected" : ''; ?>>Năm 3</option>
+                    <option value="Năm 4"<?php echo (ucfirst($data['search_school_year']) == "Năm 4" && !empty($data['search_school_year'])) ? "selected" : ''; ?>>Năm 4</option>
+                </select>
+                
             </div>
             <div style="padding: 5px;">
                 <label for="search_subject">Môn học </label>
-                <input type="text" name="search_subject" value="<?php echo (isset($data['search_subject'])) ? $data['search_subject'] : ''; ?>">
+                <select name="search_subject" id="search_subject">
+                    <option value=""></option>
+                    <?php
+                        foreach ($data['subjects'] as $key => $value) {
+                    ?>
+                        <option value="<?php echo $value->name; ?>" <?php echo $value->name == $data['search_subject'] ? "selected" : '' ?>><?php echo $value->name; ?></option>
+                    <?php
+                        }
+                    ?>
+                    
+                </select>
             </div>
             <div style="padding: 5px;">
                 <label for="search_teacher">Giáo viên</label>
-                <input type="text" name="search_teacher" value="<?php echo (isset($data['search_teacher'])) ? $data['search_teacher'] : ''; ?>">
+                <select name="search_teacher" id="search_teacher">
+                    <option value=""></option>
+                    <?php
+                        foreach ($data['teachers'] as $key => $value) {
+                    ?>
+                        <option value="<?php echo $value->name; ?>" <?php echo $value->name == $data['search_teacher'] ? "selected" : '' ?>><?php echo $value->name; ?></option>
+                    <?php
+                        }
+                    ?>
+                    
+                </select>
             </div>
             <input type="submit" value="Tìm kiếm" style="padding: 0 20px; background-color: #81aae9; cursor: pointer;">
         </form>

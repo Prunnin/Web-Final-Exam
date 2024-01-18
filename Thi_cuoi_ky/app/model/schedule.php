@@ -24,9 +24,10 @@ class schedule extends database{
         return $this->loadAllRows();
     }
     public function read_table_by_id_name($id, $name){
-        $sql = "SELECT * FROM $name WHERE id = ?";
-
-
+        $sql = "SELECT * FROM $name ";
+        if (!empty($id)){
+            $sql .= " WHERE id = ?";
+        }
         $this->setQuery($sql);
         return $this->loadRow(array($id));
     }

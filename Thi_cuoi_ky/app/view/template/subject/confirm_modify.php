@@ -9,11 +9,43 @@
         margin: 10px;
         cursor: pointer;
     }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 20px auto;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn_button {
+        padding: 10px 50px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #99bbf4;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn_button:hover {
+        background-color: #4c87ae;
+    }
+
 </style>
 <div class="container"> 
     <p>Tên môn học: <?php echo $data["name"]; ?></p>
     <p>Mô tả chi tiết: <?php echo $data['description']; ?></p>
-    <p>Avatar: <img src = "web/avatar/tmp/<?php echo $data['avatar']; ?>"></p>
+    <p>Avatar: <img src = "web/avatar/tmp/<?php echo $data['avatar']; ?>" style="max-width: 100px;"></p>
     <p>Khóa học: <?php echo $data['school_year']; ?></p>
 
     <form id="myForm" method="POST">

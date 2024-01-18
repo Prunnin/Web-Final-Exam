@@ -45,7 +45,7 @@ $departments = array(
         <!-- Teacher Information -->
         <div class="col-12">
             <!-- Result count  -->
-            <div class="page-title">Số giáo viên viên tìm thấy: xxx </div>
+            <div class="page-title">Số giáo viên viên tìm thấy: <?php echo count($data['teachers']); ?> </div>
             <table class="table" style="width: 800px">
                 <thead style="text-align: center;">
                 <tr>

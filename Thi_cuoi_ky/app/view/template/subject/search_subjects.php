@@ -78,11 +78,11 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
         echo '<input type="submit" class="modify" value="Sửa">';
         echo '</form>';
 
-        echo '<form method="post" action="subject/delete" id="form_' . $value->id . '" onsubmit="return confirmDelete(' . $value->id . ');">';
+        echo '<form method="post" action="subject/delete" id="form_' . $value->id . '" onsubmit="return confirmDelete(\''. htmlspecialchars($value->name) .'\');">';
         echo '<input type="hidden" name="subject_id" value="' . $value->id . '">';
         echo '<button type="submit" name="delete" class="delete" value="Xóa">Xóa</button>';
         echo '</form>';
-
+        
         echo '</td>';
 
         echo '</tr>';
@@ -96,8 +96,9 @@ if (isset($data["subjects"]) && is_array($data["subjects"]) && count($data["subj
 ?>
 <script src="web/javascript/jquery-3.6.0.min.js"></script>
 <script>
-    function confirmDelete(subjectId) {
-        var confirmResult = confirm("Bạn có chắc muốn xóa môn học này?");
+
+    function confirmDelete(name) {
+        var confirmResult = confirm("Bạn có chắc muốn xóa môn "+name+" này?");
         return confirmResult;
     }
 </script>

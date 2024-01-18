@@ -295,10 +295,14 @@ class subject_controller extends controller{
 
         $subject = $model->read_subject_by_id($subject_id);
 
-        $name = $subject->name;
+        // $name = $subject->name;
+        // $avatar = $subject->avatar;
+        // $description = $subject->description;
+        // $school_year = $subject->school_year;
+        $name = isset($_POST['name']) ? $_POST['name'] : $subject->name;
         $avatar = $subject->avatar;
-        $description = $subject->description;
-        $school_year = $subject->school_year;
+        $description = isset($_POST['description']) ? $_POST['description'] : $subject->description ;
+        $school_year = isset($_POST['school_year']) ? $_POST['school_year'] : $subject->school_year;
 
         $view = "subject/modify_subject";
          return $this->view($view, [
